@@ -27,7 +27,8 @@ create table if not exists executor_album(
 );
 
 create table if not exists track(
-  id serial unique not null references album(id),
+  id serial primary key,
+  album_id serial unique not null references album(id),
   date_track date,
   duratation numeric
 );
