@@ -1,0 +1,23 @@
+create table if not exists worker(
+  id serial primary key,
+  name varchar(40),
+  chief_id serial unique
+);
+
+create table if not exists chief(
+  id integer unique references worker(id),
+  employee_id serial not null unique
+);
+
+create table if not exists departament(
+  id serial primary key,
+  name varchar(40)
+);
+
+create table if not exists employee (
+  id integer unique references worker(id),
+  name varchar(40),
+  chief_id integer references chief(employee_id),
+  departament_id integer not null references departament(id)
+  
+);
